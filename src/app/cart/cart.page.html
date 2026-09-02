@@ -1,0 +1,73 @@
+<div class="modal-wrapper-container">
+  <ion-header class="ion-no-border">
+    <ion-toolbar class="cart-toolbar">
+      <ion-title>Sepetim</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()" style="--color: #ffffff;">
+          <ion-icon name="close-outline" style="font-size: 1.4rem;"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="cart-content">
+    
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      <div class="empty-icon-wrapper">
+        <ion-icon name="cart-outline"></ion-icon>
+      </div>
+      <h3>Sepetiniz Boş</h3>
+      <p>Henüz sepetinize ürün eklemediniz.</p>
+    </div>
+
+    <div *ngIf="cartItems.length > 0" class="cart-items-container">
+      <div class="cart-item" *ngFor="let item of cartItems; let i = index">
+        <div class="card-thumb">
+          <img [src]="item.image ? item.image : 'https://www.rapidseal.net/Admin/Sayfalar/bloglar/yeni-urunler-web-sitemize-eklendi.png'" (error)="handleImageError($event)" [alt]="item.name" />
+        </div>
+
+        <div class="item-details">
+          <h4 class="item-title">{{ item.name }}</h4>
+          <span class="item-unit-price">{{ item.price.toFixed(2) }} TL</span>
+        </div>
+
+        <div class="qty-actions">
+          <button class="btn-qty" (click)="decreaseQty(item, i)">
+            <ion-icon name="remove-outline"></ion-icon>
+          </button>
+          <span class="qty-text">{{ item.quantity || 1 }}</span>
+          <button class="btn-qty" (click)="increaseQty(item)">
+            <ion-icon name="add-outline"></ion-icon>
+          </button>
+        </div>
+
+        <button class="btn-delete" (click)="removeItem(i)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <ion-footer *ngIf="cartItems.length > 0" class="ion-no-border cart-footer">
+    <div class="summary-box">
+      <div class="summary-row total-row">
+        <span class="total-label">Toplam Tutar</span>
+        <div class="total-price-wrapper">
+          <span class="total-price">{{ getTotalPrice().toFixed(2) }} TL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-actions">
+      <button class="btn-clear" (click)="clearCartConfirm()">
+        <ion-icon name="trash-bin-outline"></ion-icon>
+        <span>Temizle</span>
+      </button>
+      <button class="btn-checkout" (click)="checkout()">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <span>Hesabı Tamamla</span>
+      </button>
+    </div>
+  </ion-footer>
+</div>

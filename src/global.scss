@@ -1,0 +1,55 @@
+/* Silme Onay Penceresi (Alert) Koyu Tema */
+.ion-color-dark-alert {
+  --background: #1e293b;
+  
+  .alert-title {
+    color: #ffffff !important;
+  }
+
+  .alert-message {
+    color: #94a3b8 !important;
+  }
+
+  .alert-button-group {
+    padding: 8px;
+  }
+
+  .alert-btn-cancel {
+    color: #94a3b8 !important;
+  }
+
+  .alert-btn-delete {
+    color: #ef4444 !important;
+    font-weight: bold !important;
+  }
+}
+ion-modal {
+  --border-radius: 16px;
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+  &::part(content) {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+}
+/* Cart Modal Genişlik ve Taşma Düzenlemesi */
+ion-modal {
+  --width: 90%;
+  --max-width: 440px; // Sıkışmayı önlemek için maksimum genişlik artırıldı
+  --border-radius: 16px;
+
+  &::part(content) {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+}
+ion-modal {
+  --width: 90%;
+  --max-width: 440px;
+  --border-radius: 16px;
+
+  &::part(content) {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+}

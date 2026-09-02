@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ productDetails.name || 'Ürün Detayı' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="product-details-container" *ngIf="ready">
+    <div class="product-image-wrapper">
+      <img [src]="productDetails.image || 'https://www.rapidseal.net/Admin/Sayfalar/bloglar/yeni-urunler-web-sitemize-eklendi.png'" alt="{{ productDetails.name }}" class="product-detail-img" />
+    </div>
+
+    <div class="product-info ion-padding">
+      <h1 class="product-title">{{ productDetails.name }}</h1>
+      <p class="product-price">{{ productDetails.price | currency:'TRY':'symbol':'1.2-2' }}</p>
+
+      <div class="product-section" *ngIf="productDetails.description">
+        <h3>Açıklama</h3>
+        <p class="product-description">{{ productDetails.description }}</p>
+      </div>
+
+      <div class="product-section" *ngIf="productDetails.ingredients && productDetails.ingredients.length > 0">
+        <h3>İçindekiler</h3>
+        <p class="product-ingredients">{{ productDetails.ingredients }}</p>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button id="open-toast" class="addProductToCart" expand="block" (click)="addItemToCart()" style="margin: 8px 16px;">
+      Sepete Ekle
+    </ion-button>
+  </ion-toolbar>
+  <ion-toast color="success" trigger="open-toast" [message]="productDetails.name + ' sepete eklendi.'" [duration]="3000"></ion-toast>
+</ion-footer>

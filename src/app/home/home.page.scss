@@ -1,0 +1,448 @@
+.page-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0f172a;
+
+  /* SOL SIDEBAR */
+  .custom-sidebar {
+    width: 260px;
+    min-width: 260px;
+    height: 100%;
+    background-color: #1e293b;
+    border-right: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 16px;
+    box-sizing: border-box;
+
+    .sidebar-header {
+      text-align: center;
+
+      .avatar-container {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 12px auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #3b82f6;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      h2 {
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0 0 4px 0;
+      }
+
+      p {
+        color: #94a3b8;
+        font-size: 0.8rem;
+        margin: 0;
+      }
+    }
+
+    .menu-section {
+      margin-top: 24px;
+      flex: 1;
+
+      .menu-title {
+        color: #64748b;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        padding-left: 8px;
+      }
+
+      .sidebar-list {
+        background: transparent !important;
+        padding: 0;
+
+        .menu-item {
+          --background: transparent;
+          --color: #94a3b8;
+          --border-radius: 8px;
+          margin-bottom: 6px;
+          font-size: 0.9rem;
+
+          ion-icon {
+            color: #94a3b8;
+          }
+
+          &.active-menu {
+            --background: #2563eb;
+            --color: #ffffff;
+
+            ion-icon {
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+
+    .sidebar-footer {
+      text-align: center;
+      border-top: 1px solid #334155;
+      padding-top: 16px;
+
+      h1 {
+        color: #38bdf8;
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin: 0;
+      }
+
+      p {
+        color: #64748b;
+        font-size: 0.75rem;
+        margin: 2px 0 0 0;
+      }
+    }
+  }
+
+  /* SAĞ İÇERİK ALANI */
+  .main-content {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    .main-header {
+      height: 65px;
+      min-height: 65px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #0f172a;
+      border-bottom: 1px solid #1e293b;
+
+      .header-title {
+        color: #ffffff;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .btn-add-product {
+        background-color: #2563eb;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          background-color: #1d4ed8;
+        }
+
+        ion-icon {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .content-scrollable {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+
+      /* ŞIK KART TASARIMI */
+      .menu-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 16px;
+        overflow: hidden;
+        margin: 0;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+
+        &:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+          border-color: #475569;
+        }
+
+        /* RESİM ALANI (Görsellerin tam sığması için düzenlendi) */
+        .image-wrapper {
+          height: 160px;
+          overflow: hidden;
+          background-color: #0f172a;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px;
+
+          .item-img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; // Kesilmeyi engeller, resmi çerçeveye sığdırır
+            transition: transform 0.3s ease;
+          }
+
+          &:hover .item-img {
+            transform: scale(1.05);
+          }
+        }
+
+        .card-info {
+          padding: 12px 12px 4px 12px;
+          text-align: center;
+          cursor: pointer;
+
+          .item-name {
+            color: #f8fafc;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+          }
+
+          .item-price {
+            color: #38bdf8;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+          }
+        }
+
+        .card-actions {
+          display: flex;
+          gap: 8px;
+          padding: 12px;
+
+          .btn-cart-add {
+            flex: 1;
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            height: 38px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+              background-color: #1d4ed8;
+            }
+
+            ion-icon {
+              font-size: 1.1rem;
+            }
+          }
+
+          .btn-cart-del {
+            width: 40px;
+            height: 38px;
+            background-color: #ef4444;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+              background-color: #dc2626;
+            }
+
+            ion-icon {
+              font-size: 1.1rem;
+            }
+          }
+        }
+      }
+    }
+
+    /* SEPET BUTONU */
+    .floating-cart-btn {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      background-color: #2563eb;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.5);
+      cursor: pointer;
+      z-index: 99;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+
+      &:hover {
+        transform: scale(1.08);
+        background-color: #1d4ed8;
+      }
+
+      ion-icon {
+        font-size: 26px;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        background-color: #ef4444;
+        color: #ffffff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #0f172a;
+      }
+    }
+  }
+}
+
+/* MODAL OVALLEŞTİRME */
+ion-modal {
+  --border-radius: 20px;
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+  &::part(content) {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}
+ion-modal.add-product-modal {
+  --width: 90%;
+  --max-width: 420px;
+  --height: auto;
+  --border-radius: 16px;
+
+  &::part(content) {
+    border-radius: 16px;
+    background-color: #0f172a !important;
+    border: 1px solid #334155;
+    overflow: hidden;
+  }
+}
+
+.modal-inner-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+
+  .modal-header-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    .btn-close-modal {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .modal-body-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #38bdf8;
+      }
+
+      .custom-input {
+        width: 100%;
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 12px;
+        color: #ffffff;
+        font-size: 0.95rem;
+        outline: none;
+        box-sizing: border-box;
+
+        &:focus {
+          border-color: #38bdf8;
+        }
+
+        &::placeholder {
+          color: #64748b;
+        }
+      }
+    }
+
+    .btn-save-modal {
+      width: 100%;
+      background-color: #2563eb;
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #1d4ed8;
+      }
+    }
+  }
+}
